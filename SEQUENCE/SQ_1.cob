@@ -1,0 +1,20 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. F1_N1_VILLAGARCIA.
+       AUTHOR. DION_VILLAGARCIA.
+       DATE-WRITTEN. SEPT 03, 2026.
+       DATE-COMPILED. SEPT 03, 2026.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER. PC.
+       OBJECT-COMPUTER. PC.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       PROCEDURE DIVISION.
+           DISPLAY "Dion".
+           DISPLAY "Dion".
+           DISPLAY "Dion".
+           DISPLAY "Dion".
+           DISPLAY "Dion".
+           STOP RUN.

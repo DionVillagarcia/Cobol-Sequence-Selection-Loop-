@@ -1,0 +1,23 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. F1_N2_VILLAGARCIA.
+       AUTHOR. DION_VILLAGARCIA.
+       DATE-WRITTEN. SEPT 03, 2026.
+       DATE-COMPILED. SEPT 03, 2026.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 A     PIC ZZ9.
+       01 B     PIC ZZ9.
+       01 TEMP  PIC 9(2).
+
+       PROCEDURE DIVISION.
+
+           MOVE 10 TO A.
+           MOVE 5 TO B.
+           MOVE A TO TEMP.
+           MOVE B TO A.
+           MOVE TEMP TO B.
+
+           STOP RUN.

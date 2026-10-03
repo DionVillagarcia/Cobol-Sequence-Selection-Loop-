@@ -1,0 +1,33 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. F1_N9_VILLAGARCIA.
+       AUTHOR. DION_VILLAGARCIA.
+       DATE-WRITTEN. SEPT 03, 2026.
+       DATE-COMPILED. SEPT 03, 2026.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 DIAMETER            PIC 9(3)V99.
+       01 CIRCUMFERENCE       PIC 9(3)V99.
+       01 AREA1               PIC 9(5)V99.
+
+       01 DISP-AREA1          PIC ZZZZ9.99.
+       01 DISP-CIRCUMFERENCE  PIC ZZZZ9.99.
+
+       PROCEDURE DIVISION.
+           DISPLAY "Input Diameter: "
+           ACCEPT DIAMETER.
+
+           COMPUTE AREA1 = 3.1416 *(DIAMETER / 2) ** 2.
+           COMPUTE CIRCUMFERENCE = 3.1416 * DIAMETER.
+
+           MOVE AREA1 TO DISP-AREA1.
+           MOVE CIRCUMFERENCE TO DISP-CIRCUMFERENCE.
+
+           DISPLAY "The Circle area is         : "
+                   FUNCTION TRIM(DISP-AREA1).
+           DISPLAY "The Circle Circumference is: "
+                   FUNCTION TRIM(DISP-CIRCUMFERENCE).
+
+           STOP RUN.
