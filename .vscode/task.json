@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile COBOL",
+            "type": "shell",
+            "command": "cobc",
+            "args": [
+                "-x",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}"
+            ],
+            "options": {
+                "env": {
+                    "COB_MAIN_DIR": "C:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\",
+                    "COB_CONFIG_DIR": "C:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\config",
+                    "COB_COPY_DIR": "C:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\copy",
+                    "COB_LIBRARY_PATH": "C:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\extras"
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

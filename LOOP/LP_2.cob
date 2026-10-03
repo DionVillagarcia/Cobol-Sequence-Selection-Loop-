@@ -1,0 +1,21 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LOOP_NUMBERS1-5.
+       AUTHOR. DION VILLAGARCIA.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 COUNTER  PIC 9.
+
+       PROCEDURE DIVISION.
+
+           MOVE 1 TO COUNTER
+           
+           PERFORM UNTIL COUNTER > 5
+                   DISPLAY COUNTER
+                   ADD 1 TO COUNTER
+           END-PERFORM.
+
+           STOP RUN.

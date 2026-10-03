@@ -1,0 +1,31 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. BINARYYYY.
+       AUTHOR. DION VILLAGARCIA.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 NUMBER-VALUE     PIC 9(10).
+       01 COUNTER          PIC 9(10) VALUE 1.
+       01 BINARY-RESULT    PIC 9(10) VALUE 0.
+       01 REMAINDER-VALUE  PIC 9.
+
+       PROCEDURE DIVISION.
+       MAIN-LOGIC.
+           DISPLAY "Enter Decimal Number: " WITH NO ADVANCING
+           ACCEPT NUMBER-VALUE.
+
+           MOVE 1 TO COUNTER.
+           MOVE 0 TO BINARY-RESULT.
+
+           PERFORM UNTIL NUMBER-VALUE = 0
+                   COMPUTE REMAINDER-VALUE = FUNCTION MOD(NUMBER-VALUE,
+                      2)
+                   COMPUTE BINARY-RESULT = BINARY-RESULT +
+                      (REMAINDER-VALUE * COUNTER)
+                   COMPUTE COUNTER = COUNTER * 10
+                   COMPUTE NUMBER-VALUE = NUMBER-VALUE / 2
+           END-PERFORM.
+
+           DISPLAY BINARY-RESULT.
+
+           STOP RUN.

@@ -1,0 +1,23 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FACTORIAL.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 NUMBER1    PIC 99.
+       01 FACTORIAL  PIC 9999 VALUE 1.
+       01 COUNTER    PIC 99   VALUE 1.  
+
+       PROCEDURE DIVISION.
+
+           DISPLAY "Input number: " WITH NO ADVANCING
+           ACCEPT NUMBER1.
+
+           PERFORM UNTIL COUNTER > NUMBER1
+                   COMPUTE FACTORIAL = FACTORIAL * COUNTER
+                   ADD 1 TO COUNTER
+           END-PERFORM.
+
+           DISPLAY FACTORIAL.
+
+           STOP RUN.

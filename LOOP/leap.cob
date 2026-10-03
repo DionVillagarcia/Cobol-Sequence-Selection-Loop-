@@ -1,0 +1,24 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. LEAP-YEAR.
+       AUTHOR. DION VILLAGARCIA.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 YEAR1       PIC 9(4).
+       01 REMAINDER1  PIC 9(4).
+
+       PROCEDURE DIVISION.
+
+           DISPLAY "ENTER YEAR: "
+           ACCEPT YEAR1.
+
+           COMPUTE REMAINDER1 = FUNCTION MOD(YEAR1, 4)
+
+           IF REMAINDER1 = 0
+              DISPLAY YEAR1 " IS A LEAP YEAR"
+           ELSE
+              DISPLAY YEAR1 " IS NOT A LEAP YEAR"
+           END-IF.
+
+           STOP RUN.
