@@ -4,70 +4,70 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-       01 CHOICE              PIC 99         VALUE 0.
-       01 KEY1                PIC X.
-       01 COMMAND             PIC X(5)       VALUE "clear".
+       01 CHOICE           PIC 99         VALUE 0.
+       01 KEY1             PIC X.
+       01 COMMAND          PIC X(5)       VALUE "clear".
 
        *>Numbers 1-5
-       01 COUNTER  PIC 9.
+       01 COUNTER          PIC 9.
 
        *>Even Numbers 1-N
-       01 NUMBER1    PIC 99.
-       01 COUNTER-1  PIC 99.
+       01 NUMBER1          PIC 99.
+       01 COUNTER-1        PIC 99.
 
-       01 DISP-NUM   PIC Z9.
+       01 DISP-NUM         PIC Z9.
 
        *>Even Numbers Range
-       01 LOW       PIC 99.
-       01 HIGH      PIC 99.
+       01 LOW              PIC 99.
+       01 HIGH             PIC 99.
 
-       01 DISP-LOW  PIC Z9.
+       01 DISP-LOW         PIC Z9.
 
        *> sum of odd num N-M
-       01 LOW-1         PIC 99.
-       01 HIGH-1        PIC 99.
-       01 SUM1          PIC 999 VALUE 0.
-       01 COUNTER-2     PIC 99.
+       01 LOW-1            PIC 99.
+       01 HIGH-1           PIC 99.
+       01 SUM1             PIC 999        VALUE 0.
+       01 COUNTER-2        PIC 99.
 
-       01 DISP-SUM      PIC ZZ9.
-       01 DISP-COUNTER  PIC ZZ9.
+       01 DISP-SUM         PIC ZZ9.
+       01 DISP-COUNTER     PIC ZZ9.
 
        *> Factorial
-       01 NUMBER1-1  PIC 99.
-       01 FACTORIAL  PIC 9(4) VALUE 1.
-       01 COUNTER-3  PIC 99   VALUE 1.
+       01 NUMBER1-1        PIC 99.
+       01 FACTORIAL        PIC 9(4)       VALUE 1.
+       01 COUNTER-3        PIC 99         VALUE 1.
 
-       01 DISP-FAC   PIC ZZZ9.
-       01 DISP-NUM-1   PIC Z9.
+       01 DISP-FAC         PIC ZZZ9.
+       01 DISP-NUM-1       PIC Z9.
 
        *> Digit Sum
-       01 NUMBER1-2   PIC 9(5).
-       01 SUM1-1      PIC 99999 VALUE 0.
-       01 DIGIT       PIC 9.
+       01 NUMBER1-2        PIC 9(5).
+       01 SUM1-1           PIC 99999      VALUE 0.
+       01 DIGIT            PIC 9.
 
-       01 DISP-SUM-1  PIC ZZZZ9.
+       01 DISP-SUM-1       PIC ZZZZ9.
 
        *>Fibonacci
-       01 NUMBER1-3  PIC 99.
-       01 A        PIC 9999.
-       01 B        PIC 9999.
-       01 C        PIC 9999.
+       01 NUMBER1-3        PIC 99.
+       01 A                PIC 9999.
+       01 B                PIC 9999.
+       01 C                PIC 9999.
 
-       01 DISP-C   PIC ZZZ9.
-       01 DISP-B   PIC ZZZ9.
-       01 DISP-A   PIC ZZZ9.
+       01 DISP-C           PIC ZZZ9.
+       01 DISP-B           PIC ZZZ9.
+       01 DISP-A           PIC ZZZ9.
 
-       01 COUNTER-4  PIC 99.
+       01 COUNTER-4        PIC 99.
 
        *>Prime Numbers
-       01 N         PIC 9(5).
-       01 CTR       PIC 9(5).
-       01 IS-PRIME  PIC X    VALUE 'Y'.
+       01 N                PIC 9(5).
+       01 CTR              PIC 9(5).
+       01 IS-PRIME         PIC X          VALUE 'Y'.
 
        *>Binary
        01 NUMBER-VALUE     PIC 9(10).
-       01 COUNTER-5        PIC 9(10) VALUE 1.
-       01 BINARY-RESULT    PIC 9(10) VALUE 0.
+       01 COUNTER-5        PIC 9(10)      VALUE 1.
+       01 BINARY-RESULT    PIC 9(10)      VALUE 0.
        01 REMAINDER-VALUE  PIC 9.
 
        01 DISP-RESULT      PIC ZZZZZZZZZ9.
@@ -79,52 +79,52 @@
 
        PROCEDURE DIVISION.
 
-       PERFORM UNTIL CHOICE = 11
-                    PERFORM CLEAR-SCREEN
-                    DISPLAY "MAIN MENU"
-                    DISPLAY SPACE
-                    DISPLAY "1 - Print Name"
-                    DISPLAY "2 - Print numbers 1-5"
-                    DISPLAY "3 - Print even numbers 1-N"
-                    DISPLAY "4 - Print even numbers N-M"
-                    DISPLAY "5 - Print sum of odd numbers N-M"
-                    DISPLAY "6 - Factorial"
-                    DISPLAY "7 - Sum of digits"
-                    DISPLAY "8 - Fibonacci"
-                    DISPLAY "9 - Prime Numbers"
-                    DISPLAY "10 - Decimals to Binary"
-                    DISPLAY "11 - Exit"
-                    DISPLAY "Enter your choice: " WITH NO ADVANCING
-                    ACCEPT CHOICE
+           PERFORM UNTIL CHOICE = 11
+                   PERFORM CLEAR-SCREEN
+                   DISPLAY "MAIN MENU"
+                   DISPLAY SPACE
+                   DISPLAY "1 - Print Name"
+                   DISPLAY "2 - Print numbers 1-5"
+                   DISPLAY "3 - Print even numbers 1-N"
+                   DISPLAY "4 - Print even numbers N-M"
+                   DISPLAY "5 - Print sum of odd numbers N-M"
+                   DISPLAY "6 - Factorial"
+                   DISPLAY "7 - Sum of digits"
+                   DISPLAY "8 - Fibonacci"
+                   DISPLAY "9 - Prime Numbers"
+                   DISPLAY "10 - Decimals to Binary"
+                   DISPLAY "11 - Exit"
+                   DISPLAY "Enter your choice: " WITH NO ADVANCING
+                   ACCEPT CHOICE
 
-                    EVALUATE CHOICE
-                    WHEN 1
-                         PERFORM PRINT-NAME
-                    WHEN 2
-                         PERFORM PRINT-NUM
-                    WHEN 3
-                         PERFORM PRINT-EVEN-NUM
-                    WHEN 4
-                         PERFORM PRINT-EVEN-RANGE
-                    WHEN 5
-                         PERFORM PRINT-ODD-RANGE
-                    WHEN 6
-                         PERFORM FACTORIAL-1
-                    WHEN 7
-                         PERFORM DIGITS
-                    WHEN 8
-                         PERFORM FIBONACCI
-                    WHEN 9
-                         PERFORM PRIME-NUM
-                    WHEN 10
-                         PERFORM DEC-BINARY
-                    WHEN 11
-                         CONTINUE
-                    WHEN OTHER 
-                          DISPLAY "Invalid Choice!"
-                          PERFORM PAUSE-KEY
+                   EVALUATE CHOICE
+                   WHEN 1
+                        PERFORM PRINT-NAME
+                   WHEN 2
+                        PERFORM PRINT-NUM
+                   WHEN 3
+                        PERFORM PRINT-EVEN-NUM
+                   WHEN 4
+                        PERFORM PRINT-EVEN-RANGE
+                   WHEN 5
+                        PERFORM PRINT-ODD-RANGE
+                   WHEN 6
+                        PERFORM FACTORIAL-1
+                   WHEN 7
+                        PERFORM DIGITS
+                   WHEN 8
+                        PERFORM FIBONACCI
+                   WHEN 9
+                        PERFORM PRIME-NUM
+                   WHEN 10
+                        PERFORM DEC-BINARY
+                   WHEN 11
+                        CONTINUE
+                   WHEN OTHER 
+                        DISPLAY "Invalid Choice!"
+                        PERFORM PAUSE-KEY
 
-                    END-EVALUATE
+                   END-EVALUATE
            END-PERFORM
            STOP RUN.
 
@@ -134,7 +134,6 @@
                    DISPLAY "DION"
            END-PERFORM.
 
-           STOP RUN.
            PERFORM PAUSE-KEY.
 
 
@@ -222,7 +221,7 @@
            PERFORM UNTIL COUNTER-3 > NUMBER1-1
                    COMPUTE FACTORIAL = FACTORIAL * COUNTER-3
                    ADD 1 TO COUNTER-3
-           END-PERFORM
+           END-PERFORM.
            
            MOVE FACTORIAL TO DISP-FAC.
            MOVE NUMBER1-1 TO DISP-NUM-1
@@ -291,25 +290,25 @@
            ACCEPT N.
 
            IF N < 2
-               DISPLAY "Not prime number"
+              DISPLAY "Not prime number"
            ELSE
-               MOVE 2 TO CTR
-               MOVE 'Y' TO IS-PRIME
+              MOVE 2 TO CTR
+              MOVE 'Y' TO IS-PRIME
 
-               PERFORM UNTIL CTR > N - 1
-                   IF FUNCTION MOD(N, CTR) = 0
-                       MOVE 'N' TO IS-PRIME
-                       EXIT PERFORM
-                   END-IF
+              PERFORM UNTIL CTR > N - 1
+                      IF FUNCTION MOD(N, CTR) = 0
+                         MOVE 'N' TO IS-PRIME
+                         EXIT PERFORM
+                      END-IF
 
-                   ADD 1 TO CTR
-               END-PERFORM
+                      ADD 1 TO CTR
+              END-PERFORM
 
-               IF IS-PRIME = 'Y'
-                   DISPLAY "Prime number"
-               ELSE
-                   DISPLAY "Not prime number"
-               END-IF
+              IF IS-PRIME = 'Y'
+                 DISPLAY "Prime number"
+              ELSE
+                 DISPLAY "Not prime number"
+              END-IF
            END-IF.
            PERFORM PAUSE-KEY.
 
@@ -341,10 +340,5 @@
     
     
        PAUSE-KEY.
-           DISPLAY "Press any key to continue..." WITH NO ADVANCING
-           ACCEPT KEY1.     
-
-
-
-
-
+           DISPLAY "Press any key to continue..." WITH NO ADVANCING.
+           ACCEPT KEY1.
