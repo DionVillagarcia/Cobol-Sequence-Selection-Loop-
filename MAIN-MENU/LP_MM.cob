@@ -72,11 +72,6 @@
 
        01 DISP-RESULT      PIC ZZZZZZZZZ9.
 
-       
-
-
-
-
        PROCEDURE DIVISION.
 
            PERFORM UNTIL CHOICE = 11

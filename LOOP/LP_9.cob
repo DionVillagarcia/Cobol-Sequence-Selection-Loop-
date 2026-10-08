@@ -9,26 +9,30 @@
        01 IS-PRIME  PIC X    VALUE 'Y'.
 
        PROCEDURE DIVISION.
-       MAIN-LOGIC.
+           MAIN-LOGIC.
            DISPLAY "Enter Number: " WITH NO ADVANCING
            ACCEPT N.
 
-           MOVE 2 TO CTR.
-           MOVE 'Y' TO IS-PRIME.
-
-           PERFORM UNTIL CTR > N - 1
-                   IF FUNCTION MOD(N, CTR) = 0
-                      MOVE 'N' TO IS-PRIME
-                      EXIT PERFORM
-                   ELSE
-                      ADD 1 TO CTR
-                   END-IF
-           END-PERFORM.
-
-           IF IS-PRIME = 'Y'
-              DISPLAY '"prime number"'
+           IF N < 2
+               DISPLAY "Not prime number"
            ELSE
-              DISPLAY '"Not prime number"'
+               MOVE 2 TO CTR
+               MOVE 'Y' TO IS-PRIME
+
+               PERFORM UNTIL CTR > N - 1
+                   IF FUNCTION MOD(N, CTR) = 0
+                       MOVE 'N' TO IS-PRIME
+                       EXIT PERFORM
+                   END-IF
+
+                   ADD 1 TO CTR
+               END-PERFORM
+
+               IF IS-PRIME = 'Y'
+                   DISPLAY "Prime number"
+               ELSE
+                   DISPLAY "Not prime number"
+               END-IF
            END-IF.
 
            STOP RUN.
