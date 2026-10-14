@@ -136,7 +136,7 @@
                         PERFORM TRIANGLE
                    WHEN 11
                         CONTINUE
-                   WHEN OTHER
+                    WHEN OTHER
                         DISPLAY "Invalid Choice!"
                         PERFORM PAUSE-KEY
 
@@ -349,7 +349,7 @@
        CLEAR-SCREEN.
            CALL "SYSTEM" USING COMMAND.
     
-    
+     
        PAUSE-KEY.
            DISPLAY "Press any key to continue..." WITH NO ADVANCING
            ACCEPT KEY1.

@@ -15,10 +15,6 @@
 
            COMPUTE REMAINDER1 = FUNCTION MOD(YEAR1, 4)
 
-           IF REMAINDER1 = 0
-              DISPLAY YEAR1 " IS A LEAP YEAR"
-           ELSE
-              DISPLAY YEAR1 " IS NOT A LEAP YEAR"
-           END-IF.
+           IF FUNCTION
 
            STOP RUN.
