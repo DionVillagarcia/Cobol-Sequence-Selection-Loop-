@@ -98,7 +98,7 @@
            PERFORM UNTIL CHOICE = 11
                    PERFORM CLEAR-SCREEN
                    DISPLAY "MAIN MENU"
-                   DISPLAY "" 
+                   DISPLAY " " 
                    DISPLAY "1 - Print Name"
                    DISPLAY "2 - Swap"
                    DISPLAY "3 - Sum, Difference, Product, and Quotient"
@@ -147,7 +147,7 @@
            STOP RUN.
 
        PRINT-NAME.
-           PERFORM CLEAR-SCREEN
+           *>PERFORM CLEAR-SCREEN
            DISPLAY "Dion".
            DISPLAY "Dion".
            DISPLAY "Dion".
@@ -351,5 +351,5 @@
     
     
        PAUSE-KEY.
-           DISPLAY "Press any key to continue..." WITH NO ADVANCING
+           DISPLAY "Press any key to continue..." WITH NO ADVANCING.
            ACCEPT KEY1.
