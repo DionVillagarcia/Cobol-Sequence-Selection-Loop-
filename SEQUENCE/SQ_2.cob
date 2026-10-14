@@ -18,6 +18,6 @@
            MOVE 5 TO B.
            MOVE A TO TEMP.
            MOVE B TO A.
-           MOVE TEMP TO B.
+           MOVE TEMP TO B.   
 
            STOP RUN.
