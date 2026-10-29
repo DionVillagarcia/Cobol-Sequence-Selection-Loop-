@@ -1,0 +1,4 @@
+The Sum of the 6 and 7 is 13
+The Difference of the 6 and 7 is 1
+The Product of the 6 and 7 is 42
+The Quotient of the 6 and 7 is 0.85

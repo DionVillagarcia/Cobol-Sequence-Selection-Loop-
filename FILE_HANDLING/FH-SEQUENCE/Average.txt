@@ -1,0 +1,5 @@
+Prelim:  87
+Midterm: 90
+Finals:  91
+
+Average: 89.33
