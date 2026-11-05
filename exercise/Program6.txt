@@ -1,0 +1,5 @@
+Prelim Grade: 78.00
+Midterms Grade: 79.00
+Finals Grade: 78.00
+AVERAGE: 78.33
+EQUIVALENT GRADE: 2.75

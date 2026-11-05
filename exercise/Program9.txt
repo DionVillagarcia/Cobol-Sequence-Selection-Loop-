@@ -1,0 +1,2 @@
+Day number: 01
+Today is Monday
