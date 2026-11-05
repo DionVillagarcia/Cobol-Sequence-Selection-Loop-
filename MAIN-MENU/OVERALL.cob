@@ -2,7 +2,63 @@
        PROGRAM-ID. OVERALL-MAIN-MENU.
        AUTHOR. DION VILLAGARCIA.
 
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT SEQUENCE-1-FILE
+               ASSIGN TO "Sequence1.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-2-FILE
+               ASSIGN TO "Sequence2.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-3-FILE
+               ASSIGN TO "Sequence3.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-4-FILE
+               ASSIGN TO "Sequence4.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-5-FILE
+               ASSIGN TO "Sequence5.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-6-FILE
+               ASSIGN TO "Sequence6.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-7-FILE
+               ASSIGN TO "Sequence7.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-8-FILE
+               ASSIGN TO "Sequence8.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-9-FILE
+               ASSIGN TO "Sequence9.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+           SELECT SEQUENCE-10-FILE
+               ASSIGN TO "Sequence10.txt"
+               ORGANIZATION IS LINE SEQUENTIAL.
+
        DATA DIVISION.
+       FILE SECTION.
+       FD  SEQUENCE-1-FILE.
+       01  SEQUENCE-1-REC            PIC X(100).
+       FD  SEQUENCE-2-FILE.
+       01  SEQUENCE-2-REC            PIC X(100).
+       FD  SEQUENCE-3-FILE.
+       01  SEQUENCE-3-REC            PIC X(100).
+       FD  SEQUENCE-4-FILE.
+       01  SEQUENCE-4-REC            PIC X(100).
+       FD  SEQUENCE-5-FILE.
+       01  SEQUENCE-5-REC            PIC X(100).
+       FD  SEQUENCE-6-FILE.
+       01  SEQUENCE-6-REC            PIC X(100).
+       FD  SEQUENCE-7-FILE.
+       01  SEQUENCE-7-REC            PIC X(100).
+       FD  SEQUENCE-8-FILE.
+       01  SEQUENCE-8-REC            PIC X(100).
+       FD  SEQUENCE-9-FILE.
+       01  SEQUENCE-9-REC            PIC X(100).
+       FD  SEQUENCE-10-FILE.
+       01  SEQUENCE-10-REC           PIC X(100).
+
        WORKING-STORAGE SECTION.
 
        01 MENU-CHOICE               PIC 99.
@@ -37,6 +93,8 @@
        *>Fahrenheit variables
        01 FAHRENHEIT-TEMPERATURE     PIC 9(2)V99.
        01 CELSIUS-TEMPERATURE        PIC 9(2)V99.
+       01 DISPLAY-FAHRENHEIT-TEMP    PIC ZZ9.99.
+       01 DISPLAY-CELSIUS-TEMP       PIC ZZ9.99.
 
        *> Total Sales variables
        01 SALESPERSON-NUMBER         PIC 9(11).
@@ -46,6 +104,9 @@
        01 SEQUENCE-SALES-TOTAL       PIC 9(6)V99.
 
        01 DISPLAY-SEQUENCE-SALES-TOTAL PIC ZZZZZZ9.99.
+       01 DISPLAY-SALESPERSON-NUMBER PIC Z(10)9.
+       01 DISPLAY-UNITS-SOLD         PIC ZZ9.
+       01 DISPLAY-UNIT-PRICE         PIC ZZZZZ9.99.
 
        *>Average variable
        01 AVERAGE-PRELIM-GRADE        PIC 9(3).
@@ -53,6 +114,7 @@
        01 AVERAGE-FINAL-GRADE         PIC 9(3).
        01 AVERAGE-GRADE-TOTAL         PIC 9(3).
        01 OVERALL-AVERAGE             PIC 9(2)V99.
+       01 DISPLAY-OVERALL-AVERAGE     PIC ZZ9.99.
 
        *>Square and cube variable
        01 SQUARE-VALUE               PIC 9(5).
@@ -69,6 +131,8 @@
        01 RECTANGLE-AREA             PIC 9(5).
        01 RECTANGLE-PERIMETER        PIC 9(5).
 
+       01 DISPLAY-RECTANGLE-LENGTH   PIC ZZ9.
+       01 DISPLAY-RECTANGLE-WIDTH    PIC ZZ9.
        01 DISPLAY-RECTANGLE-AREA     PIC ZZZZ9.
        01 DISPLAY-RECTANGLE-PERIMETER PIC ZZZZ9.
 
@@ -292,20 +356,35 @@
 
        PRINT-NAME.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-1-FILE
            DISPLAY "Dion".
+           MOVE "Dion" TO SEQUENCE-1-REC
+           WRITE SEQUENCE-1-REC
            DISPLAY "Dion".
+           MOVE "Dion" TO SEQUENCE-1-REC
+           WRITE SEQUENCE-1-REC
            DISPLAY "Dion".
+           MOVE "Dion" TO SEQUENCE-1-REC
+           WRITE SEQUENCE-1-REC
            DISPLAY "Dion".
+           MOVE "Dion" TO SEQUENCE-1-REC
+           WRITE SEQUENCE-1-REC
            DISPLAY "Dion".
+           MOVE "Dion" TO SEQUENCE-1-REC
+           WRITE SEQUENCE-1-REC
+           CLOSE SEQUENCE-1-FILE.
            PERFORM PAUSE-KEY.
 
 
        SWAP.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-2-FILE
            MOVE 10 TO SWAP-FIRST-VALUE.
            MOVE 5 TO SWAP-SECOND-VALUE.
            DISPLAY "BEFORE: " SWAP-FIRST-VALUE
                    " & " SWAP-SECOND-VALUE.
+           MOVE "BEFORE: 10 & 05" TO SEQUENCE-2-REC
+           WRITE SEQUENCE-2-REC
            MOVE SWAP-FIRST-VALUE TO SWAP-TEMP-VALUE.
            MOVE SWAP-SECOND-VALUE TO SWAP-FIRST-VALUE.
            MOVE SWAP-TEMP-VALUE TO SWAP-SECOND-VALUE.
@@ -315,11 +394,18 @@
                    FUNCTION TRIM(DISPLAY-SWAP-FIRST-VALUE)
                    " & "
                    FUNCTION TRIM(DISPLAY-SWAP-SECOND-VALUE).
+           MOVE SPACES TO SEQUENCE-2-REC
+           STRING "NOW: " FUNCTION TRIM(DISPLAY-SWAP-FIRST-VALUE)
+                  " & " FUNCTION TRIM(DISPLAY-SWAP-SECOND-VALUE)
+                  DELIMITED BY SIZE INTO SEQUENCE-2-REC
+           WRITE SEQUENCE-2-REC
+           CLOSE SEQUENCE-2-FILE.
            PERFORM PAUSE-KEY.
     
     
        CALCULATION.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-3-FILE
            DISPLAY "Input number: " WITH NO ADVANCING
            ACCEPT CALC-FIRST-NUMBER.
            DISPLAY "Input number: " WITH NO ADVANCING
@@ -367,23 +453,71 @@
                    FUNCTION TRIM(DISPLAY-CALC-SECOND-NUMBER)
                    " is "
                    FUNCTION TRIM(DISPLAY-CALC-QUOTIENT).
+           MOVE SPACES TO SEQUENCE-3-REC
+           STRING "The Sum of the "
+                   FUNCTION TRIM(DISPLAY-CALC-FIRST-NUMBER)
+                   " and "
+                   FUNCTION TRIM(DISPLAY-CALC-SECOND-NUMBER)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-CALC-SUM)
+                   DELIMITED BY SIZE INTO SEQUENCE-3-REC
+           WRITE SEQUENCE-3-REC
+           MOVE SPACES TO SEQUENCE-3-REC
+           STRING "The Difference of the "
+                   FUNCTION TRIM(DISPLAY-CALC-FIRST-NUMBER)
+                   " and "
+                   FUNCTION TRIM(DISPLAY-CALC-SECOND-NUMBER)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-CALC-DIFFERENCE)
+                   DELIMITED BY SIZE INTO SEQUENCE-3-REC
+           WRITE SEQUENCE-3-REC
+           MOVE SPACES TO SEQUENCE-3-REC
+           STRING "The Product of the "
+                   FUNCTION TRIM(DISPLAY-CALC-FIRST-NUMBER)
+                   " and "
+                   FUNCTION TRIM(DISPLAY-CALC-SECOND-NUMBER)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-CALC-PRODUCT)
+                   DELIMITED BY SIZE INTO SEQUENCE-3-REC
+           WRITE SEQUENCE-3-REC
+           MOVE SPACES TO SEQUENCE-3-REC
+           STRING "The Quotient of the "
+                   FUNCTION TRIM(DISPLAY-CALC-FIRST-NUMBER)
+                   " and "
+                   FUNCTION TRIM(DISPLAY-CALC-SECOND-NUMBER)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-CALC-QUOTIENT)
+                   DELIMITED BY SIZE INTO SEQUENCE-3-REC
+           WRITE SEQUENCE-3-REC
+           CLOSE SEQUENCE-3-FILE.
            PERFORM PAUSE-KEY.
     
     
        FAHRENHEIT.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-4-FILE
            DISPLAY "Input Celsius: " WITH NO ADVANCING
            ACCEPT CELSIUS-TEMPERATURE.
            COMPUTE FAHRENHEIT-TEMPERATURE =
                CELSIUS-TEMPERATURE * 9 / 5 + 32.
+           MOVE CELSIUS-TEMPERATURE TO DISPLAY-CELSIUS-TEMP
+           MOVE FAHRENHEIT-TEMPERATURE TO DISPLAY-FAHRENHEIT-TEMP
            DISPLAY "The converted Celsius of "
-                   CELSIUS-TEMPERATURE " is "
-                   FAHRENHEIT-TEMPERATURE.
+                   FUNCTION TRIM(DISPLAY-CELSIUS-TEMP) " is "
+                   FUNCTION TRIM(DISPLAY-FAHRENHEIT-TEMP).
+           MOVE SPACES TO SEQUENCE-4-REC
+           STRING "The converted Fahrenheit of "
+                   FUNCTION TRIM(DISPLAY-CELSIUS-TEMP) " is "
+                   FUNCTION TRIM(DISPLAY-FAHRENHEIT-TEMP)
+                   DELIMITED BY SIZE INTO SEQUENCE-4-REC
+           WRITE SEQUENCE-4-REC
+           CLOSE SEQUENCE-4-FILE.
            PERFORM PAUSE-KEY.
     
     
        TOTAL-SALES1.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-5-FILE
            DISPLAY "What is the Salesman number? " WITH NO ADVANCING
            ACCEPT SALESPERSON-NUMBER.
            DISPLAY "What is the Salesman name? " WITH NO ADVANCING
@@ -396,15 +530,45 @@
            COMPUTE SEQUENCE-SALES-TOTAL = UNITS-SOLD * UNIT-PRICE.
    
            MOVE SEQUENCE-SALES-TOTAL TO DISPLAY-SEQUENCE-SALES-TOTAL.
+           MOVE SALESPERSON-NUMBER TO DISPLAY-SALESPERSON-NUMBER
+           MOVE UNITS-SOLD TO DISPLAY-UNITS-SOLD
+           MOVE UNIT-PRICE TO DISPLAY-UNIT-PRICE
    
            DISPLAY FUNCTION TRIM(SALESPERSON-NAME)
                    " Total Sales is: "
                    FUNCTION TRIM(DISPLAY-SEQUENCE-SALES-TOTAL).
+           MOVE SPACES TO SEQUENCE-5-REC
+           STRING "Salesperson Number: "
+                   FUNCTION TRIM(DISPLAY-SALESPERSON-NUMBER)
+                   DELIMITED BY SIZE INTO SEQUENCE-5-REC
+           WRITE SEQUENCE-5-REC
+           MOVE SPACES TO SEQUENCE-5-REC
+           STRING "Salesperson Name: "
+                   FUNCTION TRIM(SALESPERSON-NAME)
+                   DELIMITED BY SIZE INTO SEQUENCE-5-REC
+           WRITE SEQUENCE-5-REC
+           MOVE SPACES TO SEQUENCE-5-REC
+           STRING "Units Sold: "
+                   FUNCTION TRIM(DISPLAY-UNITS-SOLD)
+                   DELIMITED BY SIZE INTO SEQUENCE-5-REC
+           WRITE SEQUENCE-5-REC
+           MOVE SPACES TO SEQUENCE-5-REC
+           STRING "Unit Price: "
+                   FUNCTION TRIM(DISPLAY-UNIT-PRICE)
+                   DELIMITED BY SIZE INTO SEQUENCE-5-REC
+           WRITE SEQUENCE-5-REC
+           MOVE SPACES TO SEQUENCE-5-REC
+           STRING "Total Sales: "
+                   FUNCTION TRIM(DISPLAY-SEQUENCE-SALES-TOTAL)
+                   DELIMITED BY SIZE INTO SEQUENCE-5-REC
+           WRITE SEQUENCE-5-REC
+           CLOSE SEQUENCE-5-FILE.
            PERFORM PAUSE-KEY.
     
     
        OVERALL-AVE.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-6-FILE
            DISPLAY "Prelim Grade? " WITH NO ADVANCING
            ACCEPT AVERAGE-PRELIM-GRADE.
            DISPLAY "Midterms Grade? " WITH NO ADVANCING
@@ -415,12 +579,21 @@
                AVERAGE-PRELIM-GRADE + AVERAGE-MIDTERM-GRADE
                + AVERAGE-FINAL-GRADE.
            COMPUTE OVERALL-AVERAGE = AVERAGE-GRADE-TOTAL / 3.
-           DISPLAY "The overall Average is: " OVERALL-AVERAGE.
+           MOVE OVERALL-AVERAGE TO DISPLAY-OVERALL-AVERAGE
+           DISPLAY "The overall Average is: "
+                   FUNCTION TRIM(DISPLAY-OVERALL-AVERAGE).
+           MOVE SPACES TO SEQUENCE-6-REC
+           STRING "The overall Average is: "
+                   FUNCTION TRIM(DISPLAY-OVERALL-AVERAGE)
+                   DELIMITED BY SIZE INTO SEQUENCE-6-REC
+           WRITE SEQUENCE-6-REC
+           CLOSE SEQUENCE-6-FILE.
            PERFORM PAUSE-KEY.
     
     
        CUBE-SQUARE.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-7-FILE
            DISPLAY "Input a number: " WITH NO ADVANCING
            ACCEPT CUBE-SQUARE-INPUT.
            COMPUTE SQUARE-VALUE = CUBE-SQUARE-INPUT
@@ -438,11 +611,27 @@
                    FUNCTION TRIM(DISPLAY-CUBE-SQUARE-INPUT)
                    " is "
                    FUNCTION TRIM(DISPLAY-CUBE-VALUE).
+           MOVE SPACES TO SEQUENCE-7-REC
+           STRING "The Squared of "
+                   FUNCTION TRIM(DISPLAY-CUBE-SQUARE-INPUT)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-SQUARE-VALUE)
+                   DELIMITED BY SIZE INTO SEQUENCE-7-REC
+           WRITE SEQUENCE-7-REC
+           MOVE SPACES TO SEQUENCE-7-REC
+           STRING "The Cubed of "
+                   FUNCTION TRIM(DISPLAY-CUBE-SQUARE-INPUT)
+                   " is "
+                   FUNCTION TRIM(DISPLAY-CUBE-VALUE)
+                   DELIMITED BY SIZE INTO SEQUENCE-7-REC
+           WRITE SEQUENCE-7-REC
+           CLOSE SEQUENCE-7-FILE.
            PERFORM PAUSE-KEY.
 
 
        RECTANGLE.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-8-FILE
            DISPLAY "Input Length: " WITH NO ADVANCING
            ACCEPT RECTANGLE-LENGTH.
            DISPLAY "Input Width: " WITH NO ADVANCING
@@ -450,17 +639,41 @@
            COMPUTE RECTANGLE-AREA = RECTANGLE-LENGTH * RECTANGLE-WIDTH.
            COMPUTE RECTANGLE-PERIMETER =
                2 * (RECTANGLE-LENGTH + RECTANGLE-WIDTH).
+           MOVE RECTANGLE-LENGTH TO DISPLAY-RECTANGLE-LENGTH.
+           MOVE RECTANGLE-WIDTH TO DISPLAY-RECTANGLE-WIDTH.
            MOVE RECTANGLE-AREA TO DISPLAY-RECTANGLE-AREA.
            MOVE RECTANGLE-PERIMETER TO DISPLAY-RECTANGLE-PERIMETER.
            DISPLAY "The object area is     : "
                    FUNCTION TRIM(DISPLAY-RECTANGLE-AREA).
            DISPLAY "The object Perimeter is: "
                    FUNCTION TRIM(DISPLAY-RECTANGLE-PERIMETER).
+           MOVE SPACES TO SEQUENCE-8-REC
+           STRING "Length: "
+                   FUNCTION TRIM(DISPLAY-RECTANGLE-LENGTH)
+                   DELIMITED BY SIZE INTO SEQUENCE-8-REC
+           WRITE SEQUENCE-8-REC
+           MOVE SPACES TO SEQUENCE-8-REC
+           STRING "Width: "
+                   FUNCTION TRIM(DISPLAY-RECTANGLE-WIDTH)
+                   DELIMITED BY SIZE INTO SEQUENCE-8-REC
+           WRITE SEQUENCE-8-REC
+           MOVE SPACES TO SEQUENCE-8-REC
+           STRING "The object area is: "
+                   FUNCTION TRIM(DISPLAY-RECTANGLE-AREA)
+                   DELIMITED BY SIZE INTO SEQUENCE-8-REC
+           WRITE SEQUENCE-8-REC
+           MOVE SPACES TO SEQUENCE-8-REC
+           STRING "The object Perimeter is: "
+                   FUNCTION TRIM(DISPLAY-RECTANGLE-PERIMETER)
+                   DELIMITED BY SIZE INTO SEQUENCE-8-REC
+           WRITE SEQUENCE-8-REC
+           CLOSE SEQUENCE-8-FILE.
            PERFORM PAUSE-KEY.
 
 
        CIRCLE.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-9-FILE
            DISPLAY "Input Diameter: "
            ACCEPT CIRCLE-DIAMETER.
 
@@ -475,11 +688,23 @@
                    FUNCTION TRIM(DISPLAY-CIRCLE-AREA).
            DISPLAY "The Circle Circumference is: "
                    FUNCTION TRIM(DISPLAY-CIRCLE-CIRCUMFERENCE).
+           MOVE SPACES TO SEQUENCE-9-REC
+           STRING "The Circle area is: "
+                   FUNCTION TRIM(DISPLAY-CIRCLE-AREA)
+                   DELIMITED BY SIZE INTO SEQUENCE-9-REC
+           WRITE SEQUENCE-9-REC
+           MOVE SPACES TO SEQUENCE-9-REC
+           STRING "The Circle Circumference is: "
+                   FUNCTION TRIM(DISPLAY-CIRCLE-CIRCUMFERENCE)
+                   DELIMITED BY SIZE INTO SEQUENCE-9-REC
+           WRITE SEQUENCE-9-REC
+           CLOSE SEQUENCE-9-FILE.
            PERFORM PAUSE-KEY.
     
     
        TRIANGLE.
            PERFORM CLEAR-SCREEN
+           OPEN OUTPUT SEQUENCE-10-FILE
            DISPLAY "Input Base: " WITH NO ADVANCING
            ACCEPT TRIANGLE-BASE.
            DISPLAY "Input Height: " WITH NO ADVANCING
@@ -503,6 +728,17 @@
                    FUNCTION TRIM(DISPLAY-TRIANGLE-AREA).
            DISPLAY "The Triangle perimeter is: "
                    FUNCTION TRIM(DISPLAY-TRIANGLE-PERIMETER).
+           MOVE SPACES TO SEQUENCE-10-REC
+           STRING "The Triangle area is: "
+                   FUNCTION TRIM(DISPLAY-TRIANGLE-AREA)
+                   DELIMITED BY SIZE INTO SEQUENCE-10-REC
+           WRITE SEQUENCE-10-REC
+           MOVE SPACES TO SEQUENCE-10-REC
+           STRING "The Triangle perimeter is: "
+                   FUNCTION TRIM(DISPLAY-TRIANGLE-PERIMETER)
+                   DELIMITED BY SIZE INTO SEQUENCE-10-REC
+           WRITE SEQUENCE-10-REC
+           CLOSE SEQUENCE-10-FILE.
            PERFORM PAUSE-KEY.           PERFORM PAUSE-KEY.
 
        SELECTION-MENU.

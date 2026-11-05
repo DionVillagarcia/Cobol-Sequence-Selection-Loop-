@@ -9,7 +9,7 @@
        01 IS-PRIME  PIC X    VALUE 'Y'.
 
        PROCEDURE DIVISION.
-           MAIN-LOGIC.
+       MAIN-LOGIC.
            DISPLAY "Enter Number: " WITH NO ADVANCING
            ACCEPT N.
 

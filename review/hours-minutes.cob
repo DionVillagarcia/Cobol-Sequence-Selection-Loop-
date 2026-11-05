@@ -1,23 +1,38 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. FACTORIAL.
+       PROGRAM-ID. ARRAY-EXAMPLE.
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
-       01 NUMBER1    PIC 99.
-       01 FACTORIAL  PIC 9999 VALUE 1.
-       01 COUNTER    PIC 99   VALUE 1.  
+       01  NUMBER-TABLE.
+           05  NUM PIC 9(3) OCCURS 5 TIMES.
+
+       01  COUNTER PIC 9 VALUE 1.
 
        PROCEDURE DIVISION.
+       MAIN-PROGRAM.
 
-           DISPLAY "Input number: " WITH NO ADVANCING
-           ACCEPT NUMBER1.
+           DISPLAY "===== ARRAY INPUT =====".
 
-           PERFORM UNTIL COUNTER > NUMBER1
-                   COMPUTE FACTORIAL = FACTORIAL * COUNTER
-                   ADD 1 TO COUNTER
+           PERFORM VARYING COUNTER FROM 1 BY 1
+               UNTIL COUNTER > 5
+
+               DISPLAY "ENTER NUMBER " COUNTER ": " WITH NO ADVANCING
+               ACCEPT NUM(COUNTER)
+
            END-PERFORM.
 
-           DISPLAY FACTORIAL.
+           DISPLAY " ".
+           DISPLAY "===== RESULTS =====".
+
+           PERFORM VARYING COUNTER FROM 1 BY 1
+               UNTIL COUNTER > 5
+
+               DISPLAY "NUM(" COUNTER ") = " NUM(COUNTER)
+
+           END-PERFORM.
+
+           DISPLAY " ".
+           DISPLAY "PROGRAM FINISHED."
 
            STOP RUN.

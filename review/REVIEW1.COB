@@ -1,38 +1,72 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. MULTIPLICATION.
-       AUTHOR. DION VILLAGARCIA.
+       PROGRAM-ID. MIDTERMS.
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
 
-       01 TABLE1          PIC 99.
-       01 COUNTER         PIC 99 VALUE 1.
-       01 MULTIPLAYER     PIC 99 VALUE 0.
-       01 PRODUCT         PIC 9(4).
+       01 NUM                PIC 9(9) VALUE 1.
+       01 ORIG-NUM           PIC 9(9).
+       01 WS-NUM             PIC 9(9).
 
-       01 DISP-P         PIC ZZZ9.
-       01 DISP-C         PIC Z9.
-       01 DISP-M         PIC ZZ9.
+       01 DIGIT              PIC 9.
+       01 QUOTIENT           PIC 9(5).
+
+       01 DIGIT-COUNT        PIC 9 VALUE 0.
+       01 SUM1               PIC 9(9).
+       01 REVERSE1           PIC 9(9).
+
+       01 TOTAL-NUM          PIC 9.
+       01 TOTAL-PAL          PIC 9.
+
+       01 DISP-S             PIC ZZZZZZZZ9.
+       01 DISP-R             PIC ZZZZZZZZ9.
+
+       01 MD                 PIC 9.
 
        PROCEDURE DIVISION.
+       MAIN-PROGRAM.
+           PERFORM UNTIL NUM = 0
+              DISPLAY "Input a number: " WITH NO ADVANCING
+              ACCEPT NUM
 
-           DISPLAY "Input how many table: " WITH NO ADVANCING
-           ACCEPT TABLE1
+              IF NUM NOT = 0
+              ADD 1 TO TOTAL-NUM
+              MOVE NUM TO ORIG-NUM
+              MOVE NUM TO WS-NUM
 
-           PERFORM UNTIL COUNTER > TABLE1
-              MOVE 1 TO MULTIPLAYER
-              DISPLAY " "
-                 PERFORM UNTIL MULTIPLAYER > 10   
-                    COMPUTE PRODUCT = COUNTER * MULTIPLAYER  
-                    MOVE PRODUCT TO DISP-P
-                    MOVE COUNTER TO DISP-C
-                    MOVE MULTIPLAYER TO DISP-M
-                    DISPLAY FUNCTION TRIM(DISP-C) " * " 
-                    DISP-M "  =  " 
-                    FUNCTION TRIM(DISP-P)
-                    ADD 1 TO MULTIPLAYER
+              MOVE 0 TO DIGIT-COUNT
+              MOVE 0 TO SUM1
+              MOVE 0 TO REVERSE1
+
+                 PERFORM VARYING DIGIT-COUNT FROM 1 BY 1
+                  UNTIL WS-NUM = 0
+                 DIVIDE WS-NUM BY 10 GIVING QUOTIENT REMAINDER DIGIT
+                 END-DIVIDE
+                 COMPUTE SUM1 = SUM1 + DIGIT
+                 COMPUTE REVERSE1 = (REVERSE1 * 10) + DIGIT
+                 MOVE QUOTIENT TO WS-NUM
                  END-PERFORM
-              ADD 1 TO COUNTER
-           END-PERFORM
+
+                 MOVE SUM1 TO DISP-S
+                 MOVE REVERSE1 TO DISP-R
+                 COMPUTE MD = DIGIT-COUNT - 1
+                 DISPLAY "Digit count: " MD
+                 DISPLAY "Digit sum: " FUNCTION TRIM(DISP-S)
+                 DISPLAY "Reverse number: " FUNCTION TRIM(DISP-R)
+
+                 IF ORIG-NUM = REVERSE1 
+                    DISPLAY "PALINDROME"
+                    ADD 1 TO TOTAL-PAL
+                 ELSE 
+                    DISPLAY "NOT A PALINDROME"
+                 END-IF
+
+                 DISPLAY " "
+              END-IF
+
+           END-PERFORM.
+
+           DISPLAY "Total number processed: " TOTAL-NUM
+           DISPLAY "Total palindrome found: " TOTAL-PAL
 
            STOP RUN.
